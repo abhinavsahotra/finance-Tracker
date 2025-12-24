@@ -1,19 +1,13 @@
 console.log("Backend TS setup OK");
 import express from "express"
 import dotenv from "dotenv"
-import {prisma} from "./lib/prisma.js";
+import authRoutes from "./routes/authroute.js";
+
 dotenv.config();
-
-async function start() {
-  await prisma.$connect();
-  console.log("✅ DB connected");
-}
-
-start();
-
 
 const app = express();
 app.use(express.json());
+app.use("/auth", authRoutes);
 
 app.get("/", (req, res) => {
     return res.json({
