@@ -1,6 +1,7 @@
 import type { Request, Response } from "express";
 import { prisma } from "../lib/prisma.js";
 import { comparePassword, hashPassword } from "../utils/password.js";
+import { generateToken } from "../utils/jwt.js";
 
 export async function signup(req: Request, res: Response) {
   const { name, email, password } = req.body;
@@ -68,8 +69,10 @@ export async function login(req: Request, res: Response) {
     });
   }
 
+  const token = generateToken(user.id)
+
   return res.status(200).json({
     message: "Login successful",
-    userId: user.id,
+    token: token
   });
 }
