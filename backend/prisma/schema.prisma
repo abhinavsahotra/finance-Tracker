@@ -25,20 +25,24 @@ model User {
 
 model Transaction {
   id        String           @id @default(uuid())
+
   userId    String
   user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   type      TransactionType
   amount    Float
   category  String
-  date      DateTime
+  date      DateTime         @default(now())
   note      String?
   createdAt DateTime         @default(now())
 }
 
 model Budget {
   id        String   @id @default(uuid())
+
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
   category  String
   limit     Float
   createdAt DateTime @default(now())
