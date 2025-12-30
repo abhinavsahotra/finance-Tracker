@@ -45,7 +45,10 @@ model Budget {
   
   category  String
   limit     Float
+  month     Int
+  year      Int
   createdAt DateTime @default(now())
+   @@unique([userId, category, month, year], name: "userId_category_month_year")
 }
 
 enum TransactionType {
