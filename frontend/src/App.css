@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+:root {
+  /* Brand meaning */
+  --primary: 16 185 129;   /* income / success */
+  --danger: 239 68 68;     /* expense / error */
+  --warning: 234 179 8;    /* budget */
+  --info: 59 130 246;      /* neutral info */
+
+  /* UI surfaces */
+  --bg: 249 250 251;
+  --card: 255 255 255;
+  --text: 17 24 39;
+  --muted: 107 114 128;
+  --border: 229 231 235;
+}
+
+@layer base {
+  body {
+    @apply bg-[rgb(var(--bg))] text-[rgb(var(--text))] antialiased;
+  }
+
+  h1 {
+    @apply text-2xl font-semibold;
+  }
+
+  h2 {
+    @apply text-lg font-semibold;
+  }
+
+  p {
+    @apply text-sm text-[rgb(var(--muted))];
+  }
+}
